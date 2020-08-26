@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+node /home/ubuntu/programms/sysTempMonitor/server.js

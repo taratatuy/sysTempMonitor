@@ -13,14 +13,14 @@ class Structure {
   constructor() {
     this.start = null;
     this.current = this.start;
-    this.prev = null;
+//    this.prev = null;
     this.length = 0;
   }
 
   add(newElementData) {
-    this.prev = this.current;
+    let prev = this.current;
     this.current = new StructElement(newElementData);
-    if (this.prev) this.prev.next = this.current;
+    if (prev) prev.next = this.current;
     if (!this.start) this.start = this.current;
     this.length++;
   }
@@ -38,6 +38,17 @@ class Structure {
       currentIndex = currentIndex.next;
     }
     output += ']';
+    return output;
+  }
+
+  toArray() {
+    let output = [[], []];
+    let currentIndex = this.start;
+    while (currentIndex) {
+      output[0].push( currentIndex.data[0] )
+      output[1].push( currentIndex.data[1] )
+      currentIndex = currentIndex.next;
+    }
     return output;
   }
 }

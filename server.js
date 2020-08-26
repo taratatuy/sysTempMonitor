@@ -1,14 +1,26 @@
-const path = require( 'path' )
-const express = require( 'express' )
-const { channel } = require( './core.js' )
-const server = express();
+const path = require('path');
+const express = require('express');
+
+const { channel } = require('./core.js');
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 const port = 10252;
 
-server.get( '/', ( req, res ) => { 
-  res.end( 'Hello from PI!' )
- } )
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
-channel.on('tempChange', data => { console.log( data.print() ) })
+channel.on('tempChange', (data) => {
+  io.emit('update', data);
+});
+channel.on('sendArray', (data) => {
+  io.emit('load', data);
+});
 
-server.listen( port, console.log( `Listening on port ${ port }` ) )
+io.on('connect', () => {
+  channel.emit('getArray');
+});
+
+server.listen(port, console.log(`Listening on port ${port}`));
