@@ -2,11 +2,12 @@ Setup:
 
 ```bash
     cd ~
-    mkdir production
-    cd production
+    mkdir prod
+    cd prod
     git clone https://github.com/taratatuy/sysTempMonitor.git
     cd sysTempMonitor
     chmod ugo+x start
+    npm i
 ```
 
 Add to autostart:
@@ -27,7 +28,7 @@ sysTempMonitior.service file:
     [Service]
     Type=idle
     #Care about full path:
-    ExecStart=/home/<username>/production/sysTempMonitor/start
+    ExecStart=/home/<username>/prod/sysTempMonitor/start
     [Install]
     WantedBy=multi-user.target
 ```

@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-node /home/ubuntu/programms/sysTempMonitor/app.js
+node /home/ubuntu/prod/sysTempMonitor/app.js
