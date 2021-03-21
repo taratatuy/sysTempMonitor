@@ -66,7 +66,8 @@ function getAvg(struct) {
   return Math.floor((avg / struct.length) * 10) / 10;
 }
 
-function formateDate(date) {
+function formateDate(date, timeShift = 3) {
+  date.setHours(date.getHours() + timeShift);
   const str = date.toLocaleDateString('en-US', {
     hour: 'numeric',
     minute: 'numeric',
