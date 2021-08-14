@@ -7,8 +7,7 @@ function init() {
   const currentTemp = new Stat('.info__current');
   const avgTemp = new Stat('.info__avg');
 
-  const ip = '192.168.1.72';
-  myIO = io.connect(`http://${ip}:10252`);
+  myIO = io.connect(window.location.host);
 
   myIO.on('load', (data) => {
     chart24h.load(data.h24.times, data.h24.temps);
